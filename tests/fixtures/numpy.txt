@@ -1,0 +1,156 @@
+NumPy
+
+The fundamental package for scientific computing with Python
+
+Powerful N-dimensional arrays
+
+Fast and versatile, the NumPy vectorization, indexing, and broadcasting
+concepts are the de-facto standards of array computing today.
+
+Numerical computing tools
+
+NumPy offers comprehensive mathematical functions, random number generators,
+linear algebra routines, Fourier transforms, and more.
+
+Open source
+
+Distributed under a liberal , NumPy is developed and maintained by a vibrant,
+responsive, and diverse .
+
+Interoperable
+
+NumPy supports a wide range of hardware and computing platforms, and plays
+well with distributed, GPU, and sparse array libraries.
+
+Performant
+
+The core of NumPy is well-optimized C code. Enjoy the flexibility of Python
+with the speed of compiled code.
+
+Easy to use
+
+NumPy’s high level syntax makes it accessible and productive for programmers
+from any background or experience level.
+
+Try NumPy
+
+Use the interactive shell to try NumPy in the browser
+
+    
+    
+    """
+    To try the examples in the browser:
+    1. Type code in the input cell and press
+       Shift + Enter to execute
+    2. Or copy paste the code, and click on
+       the "Run" button in the toolbar
+    """
+    
+    # The standard way to import NumPy:
+    import numpy as np
+    
+    # Create a 2-D array, set every second element in
+    # some rows and find max per row:
+    
+    x = np.arange(15, dtype=np.int64).reshape(3, 5)
+    x[1:, ::2] = -99
+    x
+    # array([[  0,   1,   2,   3,   4],
+    #        [-99,   6, -99,   8, -99],
+    #        [-99,  11, -99,  13, -99]])
+    
+    x.max(axis=1)
+    # array([ 4,  8, 13])
+    
+    # Generate normally distributed random numbers:
+    rng = np.random.default_rng()
+    samples = rng.normal(size=2500)
+    samples
+
+#  ECOSYSTEM
+
+Scientific Domains  Array Libraries  Data Science  Machine Learning
+Visualization
+
+Nearly every scientist working in Python draws on the power of NumPy.
+
+NumPy brings the computational power of languages like C and Fortran to
+Python, a language much easier to learn and use. With this power comes
+simplicity: a solution in NumPy is often clear and elegant.
+
+  * Quantum Computing 
+    *     *     *     *   * Statistical Computing 
+    *     *     *     *   * Signal Processing 
+    *     *     *     *   * Image Processing 
+    *     *     *   * Graphs and Networks 
+    *     *     *     *   * Astronomy 
+    *     *     *   * Cognitive Psychology 
+    *   * Bioinformatics 
+    *     *     *     *   * Bayesian Inference 
+    *     *     *     *   * Mathematical Analysis 
+    *     *     *     *   * Chemistry 
+    *     *     *     *   * Geoscience 
+    *     *     *     *   * Geographic Processing 
+    *     *     *   * Architecture & Engineering 
+    *     *     * 
+
+NumPy's API is the starting point when libraries are written to exploit
+innovative hardware, create specialized array types, or add capabilities
+beyond what NumPy provides.
+
+|  Array Library  |  Capabilities & Application areas   
+---|---|---  
+|  |  Distributed arrays and advanced parallelism for analytics, enabling performance at scale.   
+|  |  NumPy-compatible array library for GPU-accelerated computing with Python.   
+|  |  Composable transformations of NumPy programs: differentiate, vectorize, just-in-time compilation to GPU/TPU.   
+|  |  Labeled, indexed multi-dimensional arrays for advanced analytics and visualization.   
+|  |  NumPy-compatible sparse array library that integrates with Dask and SciPy's sparse linear algebra.   
+|  |  Deep learning framework that accelerates the path from research prototyping to production deployment.   
+|  |  An end-to-end platform for machine learning to easily build and deploy ML powered applications.   
+|  |  A cross-language development platform for columnar in-memory data and analytics.   
+|  |  Multi-dimensional arrays with broadcasting and lazy computing for numerical analysis.   
+|  |  Manipulate JSON-like data with NumPy-like idioms.   
+|  |  Python backend system that decouples API from implementation; unumpy provides a NumPy API.   
+|  |  Tensor learning, algebra and backends to seamlessly use NumPy, PyTorch, TensorFlow or CuPy.   
+  
+NumPy lies at the core of a rich ecosystem of data science libraries. A
+typical exploratory data science workflow might look like:
+
+  * **Extract, Transform, Load:** , , 
+  * **Exploratory analysis:** , , , 
+  * **Model and evaluate:** , , , 
+  * **Report in a dashboard:** , , 
+
+For high data volumes, and are designed to scale. Stable deployments rely on
+data versioning ( ), experiment tracking ( ), and workflow automation ( , and
+).
+
+__
+
+NumPy forms the basis of powerful machine learning libraries like and . As
+machine learning grows, so does the list of libraries built on NumPy. deep
+learning capabilities have broad applications — among them speech and image
+recognition, text-based applications, time-series analysis, and video
+detection. , another deep learning library, is popular among researchers in
+computer vision and natural language processing.
+
+Statistical techniques called such as binning, bagging, stacking, and boosting
+are among the ML algorithms implemented by tools such as , , and — one of
+the fastest inference engines. and offer machine learning visualizations.
+
+NumPy is an essential component in the burgeoning , which includes , , , , , ,
+, , and , to name a few.
+
+NumPy’s accelerated processing of large arrays allows researchers to
+visualize datasets far larger than native Python could handle.
+
+#  CASE STUDIES
+
+Sign up for the latest NumPy news, resources, and more
+
+Press Enter
+
+Thank you! 🎉
+
+© 2025 NumPy team. All rights reserved.
+

@@ -1,8 +1,10 @@
 import requests, json
+from bs4 import BeautifulSoup
 from openai import OpenAI
 from pydantic import BaseModel
 from pydantic import ValidationError
 import pandas as pd
+from html2text import html2text
 
 
 def get_html(url:str)->str|None:
@@ -12,7 +14,27 @@ def get_html(url:str)->str|None:
     except:
         print(f'Invalid url: {url}')
         return None
+
+def clean_html(html:str) -> str:
+    soup = BeautifulSoup(html, "html.parser")
+    body = soup.find(name='body')
     
+    nav = body.find('nav')
+    if nav:
+        nav.decompose()
+    
+    imgs = body.find_all('img')
+    for img in imgs:
+        img.decompose()
+
+    links = body.find_all('a')
+    for link in links:
+        link.decompose()
+    
+    text = html2text(body.prettify())
+
+    return text
+
 def create_prompt(schema:BaseModel, data_source:str):
     if data_source is None or data_source == '':
         raise ValueError('Data source must be specificed and cannot be empty string')
@@ -61,7 +83,8 @@ def extract(model:OpenAI, schema:BaseModel, url:str) -> pd.DataFrame|None:
     Extracts structured data from a web source aligning with the schema passed
     """
     html = get_html(url)
-    prompt = create_prompt(schema, html)
+    text = clean_html(html)
+    prompt = create_prompt(schema, text)
 
     model_response = model.responses.create(
         model='o4-mini-2025-04-16',

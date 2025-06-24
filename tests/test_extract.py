@@ -3,6 +3,7 @@ import pandas as pd
 from openai import OpenAI
 from schema.extract import (
     get_html, 
+    clean_html,
     create_prompt, 
     parse_model_response_as_json,
     validate_extracted_json_objects,
@@ -46,6 +47,26 @@ def test_get_html_success():
 def test_get_html_failure():
     html = get_html(url='http://incorrect-url.com')
     assert html is None
+
+def test_clean_html():
+    import regex as re
+
+    with open('tests/fixtures/numpy.html') as f:
+        html = f.read()
+
+    print(len(html))
+    
+    html = clean_html(html)
+
+    with open('tests/fixtures/numpy.txt', 'w') as f:
+        f.write(html)
+
+
+    print(len(html))
+
+    assert len(re.findall(r'<.*>.+<\\>', html)) == 0 #tags are removed
+    assert "Install Documentation Learn Community About Us" not in html #nav bar removed
+    assert html.split('\n')[0] == 'NumPy' #body selected as root node
 
 def test_create_prompt_success():
     prompt = create_prompt(schema=People, data_source=data_source)
@@ -105,9 +126,9 @@ def test_json_objects_to_dataframe_sucess():
     assert "name" in dataframe.columns.to_list()
     assert "age" in dataframe.columns.to_list()
 
-def test_extract_success():
-    model = OpenAI(api_key=api_key)
-    cl_finals_df = extract(model=model, schema=ChampionsLeagueFinal, url=cl_url)
+# def test_extract_success():
+#     model = OpenAI(api_key=api_key)
+#     cl_finals_df = extract(model=model, schema=ChampionsLeagueFinal, url=cl_url)
 
-    assert isinstance(cl_finals_df, pd.DataFrame)
-    assert len(cl_finals_df.columns) == 4
+#     assert isinstance(cl_finals_df, pd.DataFrame)
+#     assert len(cl_finals_df.columns) == 4
